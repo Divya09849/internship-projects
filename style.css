@@ -1,0 +1,231 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #0f172a, #1e3a8a);
+  color: white;
+}
+
+header h1 {
+  color: #38bdf8;
+  text-shadow: 0 0 10px #38bdf8;
+}
+
+nav a {
+  margin: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav a:hover {
+  color: #38bdf8;
+  border-bottom: 2px solid #38bdf8;
+}
+
+.hero h2 {
+  font-size: 40px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#3d-container {
+  width: 100%;
+  height: 300px;
+}
+
+.courses {
+  text-align: center;
+  padding: 40px;
+}
+
+.card {
+  display: inline-block;
+  padding: 20px;
+  margin: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.about {
+  text-align: center;
+  padding: 40px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #020617;
+}
+.course-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 40px;
+}
+
+/* 3D Card */
+.course-card {
+  width: 250px;
+  height: 180px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.course-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back */
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Front side */
+.card-front {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+}
+
+/* Back side */
+.card-back {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  transform: rotateY(180deg);
+}
+.card-front {
+  box-shadow: 0 0 20px #2563eb;
+}
+.features-page {
+  text-align: center;
+  padding: 50px;
+}
+
+.feature-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.feature-card {
+  width: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  background: rgba(255,255,255,0.2);
+}
+.contact {
+  text-align: center;
+  padding: 50px;
+}
+
+.contact-form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.contact-form button {
+  padding: 12px 20px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #0ea5e9;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  margin: 10px;
+}
+@media (max-width: 768px) {
+
+  .hero h2 {
+    font-size: 26px;
+  }
+
+ 
+  .hero, .about, .courses, .features-page, .contact {
+    padding: 20px;
+  }
+
+ 
+  .course-container,
+  .feature-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+ 
+  .course-card,
+  .feature-card,
+  .contact-card {
+    width: 90%;
+  }
+
+
+  .contact-form {
+    width: 90%;
+  }
+
+  #3d-container {
+    height: 200px;
+  }
+}
