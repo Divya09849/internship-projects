@@ -1,50 +1,61 @@
-const scene = new THREE.Scene();
+const container = document.getElementById("3d-container");
 
-const camera = new THREE.PerspectiveCamera(
-  75,
-  window.innerWidth / 300,
-  0.1,
-  1000
-);
+if (container && typeof THREE !== "undefined") {
+  const scene = new THREE.Scene();
 
+  const camera = new THREE.PerspectiveCamera(
+    65,
+    container.clientWidth / 300,
+    0.1,
+    1000
+  );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, 300);
-window.addEventListener("resize", () => {
-  renderer.setSize(window.innerWidth, 300);
-});
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true
+  });
 
-document.getElementById("3d-container").appendChild(renderer.domElement);
+  renderer.setSize(container.clientWidth, 300);
+  container.appendChild(renderer.domElement);
 
+  const geometry = new THREE.BoxGeometry(1.4, 1.4, 1.4);
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({
-  color: 0x00ffcc,
-  wireframe: true
-});
-const cube = new THREE.Mesh(geometry, material);
+  const material = new THREE.MeshBasicMaterial({
+    color: 0x2563eb,
+    wireframe: true
+  });
 
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
 
-scene.add(cube);
+  camera.position.z = 4;
 
+  function animate() {
+    requestAnimationFrame(animate);
 
-camera.position.z = 3;
+    cube.rotation.x += 0.006;
+    cube.rotation.y += 0.008;
 
-function animate() {
-  requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  }
 
- 
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  animate();
 
-  renderer.render(scene, camera);
+  window.addEventListener("resize", () => {
+    renderer.setSize(container.clientWidth, 300);
+    camera.aspect = container.clientWidth / 300;
+    camera.updateProjectionMatrix();
+  });
 }
-animate();
-function showSection(section) {
-  document.getElementById("home").style.display = "none";
-  document.getElementById("courses").style.display = "none";
-  document.getElementById("feature").style.display = "none";
-  document.getElementById("contact").style.display = "none";
 
-  document.getElementById(section).style.display = "block";
+const contactForm = document.querySelector(".contact-form");
+const formMessage = document.getElementById("form-message");
+
+if (contactForm && formMessage) {
+  contactForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    formMessage.textContent = "Thank you! Your message has been received.";
+    contactForm.reset();
+  });
 }
